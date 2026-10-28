@@ -15,11 +15,12 @@ pipeline {
             }
         }
 
-        stage('Package') {
-            steps {
-                 bat 'echo Build executed on %DATE% %TIME% > build-info.txt'
-            }
-        }
+       stage('Package') {
+    steps {
+        bat 'echo Build #%BUILD_NUMBER% executed on %DATE% %TIME% > build-info.txt'
+        archiveArtifacts artifacts: 'build-info.txt'
+    }
+}
     }
 
     post {
